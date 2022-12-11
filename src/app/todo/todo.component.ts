@@ -3,6 +3,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { TODOs } from 'src/mock-todo';
+import { STATUS } from 'src/status';
 
 @Component({
   selector: 'app-todo',
@@ -12,7 +13,7 @@ import { TODOs } from 'src/mock-todo';
 export class TodoComponent implements AfterViewInit {
   displayedColumns: string[] = ['id', 'taskName', 'status', 'deadline'];
   todos = new MatTableDataSource(TODOs);
-
+  status = STATUS;
   constructor(private _liveAnnouncer: LiveAnnouncer) {}
 
   @ViewChild(MatSort) sort!: MatSort | null;

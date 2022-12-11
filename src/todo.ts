@@ -5,7 +5,7 @@ export interface TODO {
   taskName: string;
   detail?: string;
   status: Status;
-  deadline: string;
+  deadline: Date;
   startedAt?: string;
   finishedAt?: string;
   relatedLink?: string;
