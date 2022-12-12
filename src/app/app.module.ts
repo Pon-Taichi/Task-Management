@@ -6,6 +6,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {
@@ -37,6 +39,8 @@ import { TodoComponent } from './todo/todo.component';
     MatDatepickerModule,
     MatInputModule,
     MomentDateModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ja-JP' },
