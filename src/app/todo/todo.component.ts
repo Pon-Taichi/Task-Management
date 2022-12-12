@@ -2,9 +2,9 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { TODOs } from 'src/mock-todo';
-import { STATUS } from 'src/status';
-import { TODO } from 'src/todo';
+import { STATUS } from 'src/model/status.model';
+import { TodoViewModel } from 'src/viewModel/todo.viewModel';
+import { TodoService } from '../service/todo.service';
 
 @Component({
   selector: 'app-todo',
@@ -13,18 +13,24 @@ import { TODO } from 'src/todo';
 })
 export class TodoComponent implements AfterViewInit {
   displayedColumns: string[] = ['taskName', 'status', 'deadline', 'actions'];
-  todos = new MatTableDataSource(TODOs);
+  dataSource = new MatTableDataSource<TodoViewModel>();
   status = STATUS;
   isEdit: boolean = false;
-  constructor(private _liveAnnouncer: LiveAnnouncer) {}
+
+  constructor(
+    private _liveAnnouncer: LiveAnnouncer,
+    private todoService: TodoService
+  ) {}
 
   @ViewChild(MatSort) sort!: MatSort | null;
 
   ngAfterViewInit(): void {
-    this.todos.sort = this.sort;
+    if (this.dataSource) this.dataSource.sort = this.sort;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getTodos();
+  }
 
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
@@ -34,8 +40,9 @@ export class TodoComponent implements AfterViewInit {
     }
   }
 
-  log(todo: TODO) {
-    console.log(todo);
-    console.log(todo.deadline);
+  getTodos(): void {
+    this.todoService.getTodos().subscribe((todos) => {
+      this.dataSource.data = todos;
+    });
   }
 }

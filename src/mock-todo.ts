@@ -1,5 +1,5 @@
-import { STATUS } from './status';
-import { TODO } from './todo';
+import { STATUS } from './model/status.model';
+import { TODO } from './model/todo.model';
 
 export const TODOs: TODO[] = [
   {

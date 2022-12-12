@@ -1,6 +1,6 @@
 <table
   mat-table
-  [dataSource]="todos"
+  [dataSource]="dataSource"
   matSort
   (matSortChange)="announceSortChange($event)"
   class="mat-elevation-z8"
@@ -74,13 +74,21 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
-      <button mat-raised-button [disabled]="isEdit" (click)="isEdit = !isEdit">
+      <button
+        mat-raised-button
+        [disabled]="element.isEdit"
+        (click)="element.isEdit = !element.isEdit"
+      >
         edit
       </button>
-      <button mat-raised-button [disabled]="!isEdit" (click)="isEdit = !isEdit">
+      <button
+        mat-raised-button
+        [disabled]="!element.isEdit"
+        (click)="element.isEdit = !element.isEdit"
+      >
         save
       </button>
-      <button mat-icon-button (click)="log(element)">
+      <button mat-icon-button>
         <mat-icon color="warn">delete</mat-icon>
       </button>
     </td>
