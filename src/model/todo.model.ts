@@ -1,12 +1,8 @@
 import { Status } from './status.model';
 
-export interface TODO {
-  id: number;
+export type TodoModel = {
+  id: string;
   taskName: string;
-  detail?: string;
   status: Status;
   deadline: Date;
-  startedAt?: string;
-  finishedAt?: string;
-  relatedLink?: string;
-}
+};

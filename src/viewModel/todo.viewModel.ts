@@ -1,7 +1,7 @@
 import { Status } from 'src/model/status.model';
 
 export type TodoViewModel = {
-  id: number;
+  id: string;
   taskName: string;
   status: Status;
   deadline: Date;

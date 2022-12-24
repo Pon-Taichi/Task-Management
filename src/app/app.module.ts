@@ -26,9 +26,12 @@ import {
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TodoComponent } from './todo/todo.component';
+import { TodoListComponent } from './todo-list/todo-list.component';
+import { TodoDoneComponent } from './todo-done/todo-done.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
-  declarations: [AppComponent, TodoComponent],
+  declarations: [AppComponent, TodoComponent, TodoListComponent, TodoDoneComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -41,6 +44,7 @@ import { TodoComponent } from './todo/todo.component';
     MomentDateModule,
     MatButtonModule,
     MatIconModule,
+    AppRoutingModule,
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ja-JP' },

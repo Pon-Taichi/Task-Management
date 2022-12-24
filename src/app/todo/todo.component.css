@@ -1,11 +1,10 @@
-table {
-  width: 100%;
-}
-
-th.mat-sort-header-sorted {
-  color: black;
-}
-
 button {
   margin: 8px;
+}
+
+nav {
+  padding-bottom: 20px;
+}
+a {
+  margin-right: 10px;
 }

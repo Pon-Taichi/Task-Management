@@ -11,38 +11,20 @@ import { TodoService } from '../service/todo.service';
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.css'],
 })
-export class TodoComponent implements AfterViewInit {
-  displayedColumns: string[] = ['taskName', 'status', 'deadline', 'actions'];
-  dataSource = new MatTableDataSource<TodoViewModel>();
-  status = STATUS;
-  isEdit: boolean = false;
+export class TodoComponent implements OnInit {
+  constructor(private todoService: TodoService) {}
 
-  constructor(
-    private _liveAnnouncer: LiveAnnouncer,
-    private todoService: TodoService
-  ) {}
+  ngOnInit(): void {}
 
-  @ViewChild(MatSort) sort!: MatSort | null;
+  addTodo(taskName: string) {
+    const todo: TodoViewModel = {
+      id: '',
+      taskName: taskName,
+      status: 'New',
+      deadline: new Date(),
+      isEdit: false,
+    };
 
-  ngAfterViewInit(): void {
-    if (this.dataSource) this.dataSource.sort = this.sort;
-  }
-
-  ngOnInit(): void {
-    this.getTodos();
-  }
-
-  announceSortChange(sortState: Sort) {
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce('Sorting cleared');
-    }
-  }
-
-  getTodos(): void {
-    this.todoService.getTodos().subscribe((todos) => {
-      this.dataSource.data = todos;
-    });
+    this.todoService.addTodo(todo).subscribe();
   }
 }
