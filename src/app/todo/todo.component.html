@@ -9,8 +9,14 @@
 </div>
 
 <nav>
-  <a routerLink="/todo"> ToDo List </a>
-  <a routerLink="/done"> Completed Tasks </a>
+  <button mat-button (click)="showTodoList()">ToDo List</button>
+  <button mat-button (click)="showCompletedTasks()">Completed Tasks</button>
 </nav>
 
-<router-outlet></router-outlet>
+<ng-container *ngIf="viewMode == 0">
+  <app-todo-list></app-todo-list>
+</ng-container>
+
+<ng-container *ngIf="viewMode == 1">
+  <app-todo-done></app-todo-done>
+</ng-container>
